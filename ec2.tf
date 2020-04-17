@@ -1,11 +1,11 @@
 ##### EC2 Instance ######
 
-resource "aws_instance" "Dijango" {
+resource "aws_instance" "Drupal" {
  ami                         = var.image
  instance_type               = var.instance_type
  key_name                    = var.key
  monitoring                  = true
- user_data                   = data.template_file.dijango.rendered
+ user_data                   = data.template_file.drupal.rendered
  vpc_security_group_ids      = [aws_security_group.sg.id]
  subnet_id                   = aws_subnet.public_subnet.id
  associate_public_ip_address = true 
@@ -15,10 +15,10 @@ resource "aws_instance" "Dijango" {
    delete_on_termination = "true"
  }
  tags = {
-   Name        = "Dijango"
+   Name        = "Drupal"
    }
 provisioner "local-exec" {
-    command = "echo ${aws_instance.Dijango.public_ip} >> /var/lib/jenkins/workspace/terragods/publicip"
+    command = "echo ${aws_instance.Drupal.public_ip} >> /var/lib/jenkins/workspace/drupal/publicip"
 }
 
 #user_data = <<HEREDOC
@@ -26,7 +26,7 @@ provisioner "local-exec" {
 #HEREDOC
 }
 
-data "template_file" "dijango" {
+data "template_file" "drupal" {
   template = file("install.sh")
 }
 
@@ -126,7 +126,7 @@ resource "aws_security_group" "sg" {
        cidr_blocks = ["0.0.0.0/0"]
    }
  tags = {
-   Name        = "gods-sg"
+   Name        = "karthi-sg"
   }
 }
 #output "ip" {
