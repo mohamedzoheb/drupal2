@@ -9,19 +9,6 @@ sudo echo "CREATE DATABASE zippyops_db CHARACTER SET utf8 COLLATE utf8_general_c
 sudo echo "CREATE USER 'zippyops'@'localhost' IDENTIFIED BY 'zippyops';" | mysql
 sudo echo "GRANT ALL PRIVILEGES ON zippyops_db.* TO 'zippyops'@'localhost';" | mysql
 sudo echo "FLUSH PRIVILEGES;" | mysql
-sudo git clone https://github.com/1996karthick/zippyops_drupal.git
-cd zippyops_drupal
 mysql -u zippyops -pzippyops zippyops_db < zippyops_db.sql
-
-cd zippyops_drupal
 yes | cp -Rf drupal /var/www/html/
 sudo systemctl restart httpd
-
-portal username:karthick@zippyopsgmail.onmicrosoft.com
-portal password:zippyops@123
-resource group name : zippyops_test
-
-instance username: zippyops
-instance password: zippyops@123
-
-aws ec2-describe address
