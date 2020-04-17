@@ -10,5 +10,6 @@ sudo echo "GRANT ALL PRIVILEGES ON zippyops_db.* TO 'zippyops'@'localhost';" | m
 sudo echo "FLUSH PRIVILEGES;" | mysql
 cd /home/ec2-user/drupal
 mysql -u zippyops -pzippyops zippyops_db < zippyops_db.sql
+cd /home/ec2-user/drupal/drupal
 yes | cp -Rf drupal /var/www/html/
 sudo systemctl restart httpd
